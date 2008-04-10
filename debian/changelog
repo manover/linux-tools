@@ -1,8 +1,8 @@
-linux-kbuild-2.6.24 (2.6.24-1~etchnhalf.1) UNRELEASED; urgency=low
+linux-kbuild-2.6.24 (2.6.24-1~etchnhalf.1) stable; urgency=low
 
   * Branch and rename source to linux-2.6.24 targeted for etchnhalf.
 
- -- dann frazier <dannf@debian.org>  Wed, 09 Apr 2008 17:59:36 -0600
+ -- dann frazier <dannf@debian.org>  Thu, 10 Apr 2008 13:28:30 -0600
 
 linux-kbuild-2.6 (2.6.24-1) unstable; urgency=low
 
