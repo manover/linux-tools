@@ -9,6 +9,7 @@ linux-tools (3.2.37-1) UNRELEASED; urgency=low
 
   [ Ben Hutchings ]
   * perf evlist: Fix errno value reporting on failed mmap (Closes: #696957)
+  * perf script: Fix net_dropmonitor script (Closes: #708994)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 20 Jan 2013 15:42:26 +0000
 
