@@ -1,8 +1,39 @@
-linux-tools (3.9.4-1~bpo70+1) wheezy-backports; urgency=low
+linux-tools (3.10-3~bpo70+1) wheezy-backports; urgency=low
 
   * Rebuild for wheezy
 
- -- Ben Hutchings <ben@decadent.org.uk>  Sat, 22 Jun 2013 04:01:58 +0100
+ -- Ben Hutchings <ben@decadent.org.uk>  Mon, 12 Aug 2013 15:45:08 +0200
+
+linux-tools (3.10-3) unstable; urgency=low
+
+  * linux-kbuild: Fix no-modules case in modpost wrapper (Closes: #719129)
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Thu, 08 Aug 2013 21:49:02 +0200
+
+linux-tools (3.10-2) unstable; urgency=low
+
+  * linux-kbuild: Fix use of getline() in modpost wrapper (Closes: #717195)
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Thu, 18 Jul 2013 04:02:11 +0100
+
+linux-tools (3.10-1) unstable; urgency=low
+
+  * New upstream release
+
+  [ Chris Boot ]
+  * Update modpost-symbol-prefix.patch for 3.10
+
+  [ Ben Hutchings ]
+  * debian/patches: Add DEP-3 headers (From, Subject, Forwarded) to all patches
+  * debian/copyright: Convert to machine-readable format (fka DEP-5)
+  * debian/copyright: Add explanation of indirect linking of perf to OpenSSL
+  * debian/rules.real: Remove support for pre-multiarch dpkg
+  * Update policy version to 3.9.4
+    - debian/rules: Implement build-arch and build-indep targets
+  * linux-kbuild: Update modpost wrapper for 3.10
+    - Implement the -T option
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Tue, 16 Jul 2013 13:29:22 +0100
 
 linux-tools (3.9.4-1) unstable; urgency=low
 
