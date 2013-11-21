@@ -4,16 +4,20 @@ include ../../Makefile.inc
 
 DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 
+NO_LIBUNWIND = 1
+
 ifeq ($(DEB_HOST_ARCH_CPU),alpha)
   KERNEL_ARCH_PERF = alpha
 else ifeq ($(DEB_HOST_ARCH_CPU),amd64)
   KERNEL_ARCH_PERF = x86_64
+  NO_LIBUNWIND =
 else ifeq ($(DEB_HOST_ARCH_CPU),arm)
   KERNEL_ARCH_PERF = arm
 else ifeq ($(DEB_HOST_ARCH_CPU),hppa)
   KERNEL_ARCH_PERF = parisc
 else ifeq ($(DEB_HOST_ARCH_CPU),i386)
   KERNEL_ARCH_PERF = i386
+  NO_LIBUNWIND =
 else ifeq ($(DEB_HOST_ARCH_CPU),powerpc)
   KERNEL_ARCH_PERF = powerpc
 else ifeq ($(DEB_HOST_ARCH_CPU),powerpc64)
@@ -31,23 +35,21 @@ else ifeq ($(DEB_HOST_ARCH_CPU),sparc64)
 endif
 
 # disable Gtk UI until it's more usable
-MAKE_PERF := $(MAKE) prefix=/usr perfexecdir=share/perf_$(VERSION)-core NO_GTK2=1 NO_PERL=1 V=2 HAVE_CPLUS_DEMANGLE=1 ARCH=$(KERNEL_ARCH_PERF) EXTRA_WARNINGS=-Wno-error
+# disable libunwind on architectures lacking libunwind7-dev, just in case
+# libunwind8-dev is installed
+MAKE_PERF := $(MAKE) prefix=/usr perfexecdir=share/perf_$(VERSION)-core NO_GTK2=1 NO_PERL=1 V=2 HAVE_CPLUS_DEMANGLE=1 ARCH=$(KERNEL_ARCH_PERF) EXTRA_WARNINGS=-Wno-error NO_LIBUNWIND=$(NO_LIBUNWIND)
 
 all:
 ifdef KERNEL_ARCH_PERF
 	-mkdir out
-	# upstream makefile is broken
-	cp -al $(top_srcdir)/tools/perf/Documentation doc
-	cp -al $(top_srcdir)/tools/perf/config config
 	+$(MAKE_PERF) -C $(top_srcdir)/tools/perf O=$(CURDIR)/out all VERSION=$(VERSION)
-	+$(MAKE_PERF) -C doc man VERSION=$(VERSION)
+	+$(MAKE_PERF) -C $(top_srcdir)/tools/perf/Documentation O=$(CURDIR)/out man VERSION=$(VERSION)
 endif
 
 install:
 ifdef KERNEL_ARCH_PERF
 	+$(MAKE_PERF) -C $(top_srcdir)/tools/perf O=$(CURDIR)/out install VERSION=$(VERSION)
-	+$(MAKE_PERF) -C doc install-man VERSION=$(VERSION)
 endif
 
 clean:
-	rm -rf config doc out
+	rm -rf out
