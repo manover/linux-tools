@@ -1,0 +1,33 @@
+From: Ben Hutchings <ben@decadent.org.uk>
+Date: Sun, 21 Sep 2014 19:06:45 +0100
+Subject: perf: Work-around Perl bool definition conflict
+
+In older Perl versions (at least 5.14 in 'wheezy') the XS headers will
+define the bool type directly rather than including <stdbool.h>.  This
+now conflicts with indirect inclusion of <stdbool.h> by other headers.
+There is an attempted workaround for this in the upstream source but
+it doesn't seem to be applied early enough any more.  Move it to the
+compiler options for the Perl binding.
+
+--- a/tools/perf/config/Makefile
++++ b/tools/perf/config/Makefile
+@@ -446,6 +446,9 @@ else
+   PERL_EMBED_LDFLAGS = $(call strip-libs,$(PERL_EMBED_LDOPTS))
+   PERL_EMBED_LIBADD = $(call grep-libs,$(PERL_EMBED_LDOPTS))
+   PERL_EMBED_CCOPTS = `perl -MExtUtils::Embed -e ccopts 2>/dev/null`
++  # Older versions of Perl will try to define bool, in conflict with
++  # <stdbool.h>
++  PERL_EMBED_CCOPTS += -include stdbool.h -DHAS_BOOL
+   FLAGS_PERL_EMBED=$(PERL_EMBED_CCOPTS) $(PERL_EMBED_LDOPTS)
+ 
+   ifneq ($(feature-libperl), 1)
+--- a/tools/perf/util/util.h
++++ b/tools/perf/util/util.h
+@@ -39,7 +39,6 @@
+ 
+ #define _ALL_SOURCE 1
+ #define _BSD_SOURCE 1
+-#define HAS_BOOL
+ 
+ #include <unistd.h>
+ #include <stdio.h>

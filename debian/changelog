@@ -2,8 +2,9 @@ linux-tools (3.16-2~bpo70+1) wheezy-backports; urgency=low
 
   * Rebuild for wheezy
     - Replace build-dependency on libunwind8-dev with libunwind7-dev
+    - perf: Work-around Perl bool definition conflict
 
- -- Ben Hutchings <ben@decadent.org.uk>  Sun, 21 Sep 2014 16:24:30 +0100
+ -- Ben Hutchings <ben@decadent.org.uk>  Sun, 21 Sep 2014 19:22:08 +0100
 
 linux-tools (3.16-2) unstable; urgency=medium
 
