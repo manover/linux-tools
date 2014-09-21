@@ -21,6 +21,8 @@ else ifeq ($(DEB_HOST_ARCH_CPU),powerpc)
   KERNEL_ARCH_PERF = powerpc
 else ifeq ($(DEB_HOST_ARCH_CPU),powerpc64)
   KERNEL_ARCH_PERF = powerpc
+else ifeq ($(DEB_HOST_ARCH_CPU),ppc64el)
+  KERNEL_ARCH_PERF = powerpc
 else ifeq ($(DEB_HOST_ARCH_CPU),s390)
   KERNEL_ARCH_PERF = s390
 else ifeq ($(DEB_HOST_ARCH_CPU),s390x)
@@ -33,13 +35,17 @@ else ifeq ($(DEB_HOST_ARCH_CPU),sparc64)
   KERNEL_ARCH_PERF = sparc
 endif
 
-# disable Gtk UI until it's more usable
-MAKE_PERF := $(MAKE) prefix=/usr perfexecdir=share/perf_$(VERSION)-core NO_GTK2=1 NO_PERL=1 V=2 HAVE_CPLUS_DEMANGLE=1 ARCH=$(KERNEL_ARCH_PERF) EXTRA_WARNINGS=-Wno-error NO_LIBUNWIND=$(NO_LIBUNWIND)
+# - disable Gtk UI until it's more usable
+# - Include version in all directory names
+MAKE_PERF := $(MAKE) prefix=/usr perfexecdir=share/perf_$(VERSION)-core plugindir=/usr/lib/traceevent_$(VERSION)/plugins NO_GTK2=1 NO_PERL=1 V=1 HAVE_CPLUS_DEMANGLE=1 ARCH=$(KERNEL_ARCH_PERF) EXTRA_WARNINGS=-Wno-error NO_LIBUNWIND=$(NO_LIBUNWIND)
 
 all:
 ifdef KERNEL_ARCH_PERF
 	-mkdir out
-	+$(MAKE_PERF) -C $(top_srcdir)/tools/perf -f Makefile.perf O=$(CURDIR)/out all VERSION=$(VERSION)
+# perf changes some default directories depending on whether DESTDIR is
+# set.  We must define it even when building to avoid a rebuild when we
+# run 'make install'.
+	+$(MAKE_PERF) -C $(top_srcdir)/tools/perf -f Makefile.perf O=$(CURDIR)/out all VERSION=$(VERSION) DESTDIR=dummy
 	+$(MAKE_PERF) -C $(top_srcdir)/tools/perf/Documentation O=$(CURDIR)/out man VERSION=$(VERSION)
 endif
 

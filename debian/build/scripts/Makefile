@@ -2,12 +2,14 @@ PROGS = \
 	bin2c \
 	conmakehash \
 	kallsyms \
-	pnmtologo
+	pnmtologo \
+	recordmcount
 
 DATA = \
 	Kbuild.include \
 	Makefile.build \
 	Makefile.clean \
+	Makefile.extrawarn \
 	Makefile.host \
 	Makefile.lib \
 	Makefile.modinst \
@@ -32,6 +34,7 @@ SCRIPTS =  \
 	mkuboot.sh \
 	namespace.pl \
 	patch-kernel \
+	recordmcount.pl \
 	setlocalversion \
 	ver_linux
 
