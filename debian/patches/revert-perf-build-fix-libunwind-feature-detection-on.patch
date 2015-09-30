@@ -8,8 +8,6 @@ It broke feature detection that was working just fine for us.
  tools/perf/config/Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tools/perf/config/Makefile b/tools/perf/config/Makefile
-index 094ddae..9b8937c 100644
 --- a/tools/perf/config/Makefile
 +++ b/tools/perf/config/Makefile
 @@ -32,7 +32,7 @@ ifeq ($(ARCH),x86)

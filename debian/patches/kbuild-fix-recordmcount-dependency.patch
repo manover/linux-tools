@@ -8,7 +8,7 @@ sources.
 
 --- a/scripts/Makefile.build
 +++ b/scripts/Makefile.build
-@@ -240,6 +240,11 @@ cmd_record_mcount = 						\
+@@ -241,6 +241,11 @@ cmd_record_mcount =						\
  	fi;
  endif
  

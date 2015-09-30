@@ -12,8 +12,6 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  tools/perf/arch/x86/util/dwarf-regs.c | 38 ++++++++++++++++-------------------
  1 file changed, 17 insertions(+), 21 deletions(-)
 
-diff --git a/tools/perf/arch/x86/util/dwarf-regs.c b/tools/perf/arch/x86/util/dwarf-regs.c
-index 9223c16..fe1e516 100644
 --- a/tools/perf/arch/x86/util/dwarf-regs.c
 +++ b/tools/perf/arch/x86/util/dwarf-regs.c
 @@ -55,26 +55,10 @@ struct pt_regs_offset {
@@ -45,7 +43,7 @@ index 9223c16..fe1e516 100644
  static const struct pt_regs_offset x86_64_regoffset_table[] = {
  	REG_OFFSET_NAME_64("%ax",	rax),
  	REG_OFFSET_NAME_64("%dx",	rdx),
-@@ -94,12 +78,24 @@ static const struct pt_regs_offset x86_64_regoffset_table[] = {
+@@ -94,12 +78,24 @@ static const struct pt_regs_offset x86_6
  	REG_OFFSET_NAME_64("%r15",	r15),
  	REG_OFFSET_END,
  };
