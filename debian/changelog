@@ -1,3 +1,9 @@
+linux-tools (4.2-2~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Héctor Orón Martínez <zumbi@debian.org>  Fri, 09 Oct 2015 08:25:11 +0200
+
 linux-tools (4.2-2) unstable; urgency=medium
 
   * [x32] Don't attempt to build linux-perf (fixes FTBFS)
