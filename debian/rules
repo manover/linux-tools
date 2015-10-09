@@ -5,6 +5,8 @@ VERSION_DEBIAN_BINNMU := $(shell echo "$(DEB_VERSION)" | sed -ne 's,.*\+b\(.*\)$
 
 include debian/rules.defs
 
+MAKEFLAGS += $(subst parallel=,-j,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+
 build: build-arch build-indep
 
 build-arch: debian/control $(STAMPS_DIR)/build-base
@@ -36,12 +38,12 @@ endif
 
 maintainerclean:
 	rm -f debian/control debian/control.md5sum debian/rules.gen
-	rm -rf $(filter-out debian .svk .svn, $(wildcard * .[^.]*))
+	rm -rf $(filter-out debian .svk .svn .git, $(wildcard * .[^.]*))
 
 clean: debian/control
 	dh_testdir
 	make -C $(BUILD_DIR) clean top_srcdir=$(CURDIR)
-	rm -rf $(STAMPS_DIR) debian/lib/python/debian_linux/*.pyc
+	rm -rf $(STAMPS_DIR) debian/lib/python/debian_linux/__pycache__
 	dh_clean
 
 binary-indep:

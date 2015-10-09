@@ -23,10 +23,13 @@ else ifeq ($(DEB_HOST_ARCH_CPU),sh4)
 else ifneq ($(filter sparc%,$(DEB_HOST_ARCH_CPU)),)
   KERNEL_ARCH_PERF = sparc
 else ifneq ($(filter amd64 i386,$(DEB_HOST_ARCH_CPU)),)
-  KERNEL_ARCH_PERF = x86
+  # But x32 isn't supported yet
+  ifneq ($(shell dpkg-architecture -qDEB_HOST_ARCH),x32)
+    KERNEL_ARCH_PERF = x86
+  endif
 endif
 
-MAKE_PERF := $(MAKE) prefix=/usr V=1 ARCH=$(KERNEL_ARCH_PERF) EXTRA_WARNINGS=-Wno-error
+MAKE_PERF := $(MAKE) prefix=/usr V=1 ARCH=$(KERNEL_ARCH_PERF) EXTRA_WARNINGS=-Wno-error EXTRA_CFLAGS='$(CFLAGS) $(CPPFLAGS)' LDFLAGS='$(LDFLAGS)'
 
 # Disable Gtk UI until it's more usable
 MAKE_PERF += NO_GTK2=1
@@ -66,6 +69,10 @@ ifdef KERNEL_ARCH_PERF
 # - 'perf trace' doesn't take much more typing
 	rm -f $(DESTDIR)/usr/bin/trace_$(VERSION)
 endif
+	mkdir -p $(DESTDIR)/usr/share/bash-completion/
+	mv $(DESTDIR)/etc/bash_completion.d \
+		$(DESTDIR)/usr/share/bash-completion/completions
+	rmdir --ignore-fail-on-non-empty $(DESTDIR)/etc
 
 clean:
 ifdef KERNEL_ARCH_PERF

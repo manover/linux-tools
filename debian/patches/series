@@ -1,3 +1,4 @@
+gitignore.patch
 modpost-symbol-prefix.patch
 tools-perf-version.patch
 tools-perf-install.patch
@@ -6,3 +7,12 @@ kbuild-fix-recordmcount-dependency.patch
 usbip-include-uninstalled-linux-usbip-h.patch
 tools-perf-man-date.patch
 tools-perf-add-empty-build-files-for-architectures-lacking.patch
+lockdep-fix-oot-build.patch
+lockdep-fix-headers.patch
+lockdep-fix-soname.patch
+tools-perf-remove-shebangs.patch
+tools-lib-traceevent-use-ldflags.patch
+tools-lib-lockdep-use-ldflags.patch
+tools-hv-fix-fortify-format-warning.patch
+revert-perf-build-fix-libunwind-feature-detection-on.patch
+alpha-uapi-add-support-for-__sane_userspace_types__.patch

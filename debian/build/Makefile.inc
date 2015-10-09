@@ -6,9 +6,12 @@ SHELL = /bin/sh -e
 
 CC = gcc
 CXX = g++
-CFLAGS ?= -O2 -Wall
-CPPFLAGS = -I$(top_srcdir)/$(OUTDIR) -I$(top_srcdir)/debian/build/$(OUTDIR)
-CXXFLAGS = $(CFLAGS)
+CFLAGS := $(shell dpkg-buildflags --get CFLAGS) -Wall
+CPPFLAGS := $(shell dpkg-buildflags --get CPPFLAGS) \
+	-I$(top_srcdir)/$(OUTDIR) -I$(top_srcdir)/debian/build/$(OUTDIR) \
+	-isystem $(top_srcdir)/debian/build/include
+CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) -Wall
+LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS)
 
 all: all-local all-recursive
 clean: clean-local clean-recursive

@@ -1,8 +1,51 @@
-linux-tools (4.1.4-2~bpo8+1) jessie-backports; urgency=medium
+linux-tools (4.2-2) unstable; urgency=medium
 
-  * Rebuild for jessie-backports.
+  * [x32] Don't attempt to build linux-perf (fixes FTBFS)
+  * [x32] Build hyperv-daemons package
+  * [alpha] uapi: Add support for __SANE_USERSPACE_TYPES__(fixes FTBFS)
 
- -- Hector Oron <zumbi@debian.org>  Wed, 12 Aug 2015 17:27:41 +0200
+ -- Ben Hutchings <ben@decadent.org.uk>  Fri, 02 Oct 2015 18:41:22 +0100
+
+linux-tools (4.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+  [ Ben Hutchings ]
+  * debian/bin,debian/control,debian/lib/python,debian/rules: Use Python 3
+    - debian/lib/python: Sync with linux package
+  * debian/bin/genorig.py: Make orig tarballs reproducible
+  * linux-perf: Fix installation directory for bash completions
+  * linux-perf: Remove shebang lines from perf scripts
+  * Set compiler flags according to dpkg-buildflags
+  * hyperv-daemons: Fix fortify format warning
+  * debian/rules: Add support for DEB_BUILD_OPTIONS=parallel=N
+  * debian/control: Update policy version to 3.9.6; no changes required
+  * linux-perf: Revert "perf build: Fix libunwind feature detection on 32-bit
+    x86", which was a regression for us
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Fri, 25 Sep 2015 22:55:41 +0100
+
+linux-tools (4.2~rc7-1~exp1) experimental; urgency=medium
+
+  * New upstream release candidate
+
+  [ Ben Hutchings ]
+  * genorig: Include more mips makefiles (fixes FTBFS)
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Mon, 17 Aug 2015 10:42:08 +0200
+
+linux-tools (4.2~rc6-1~exp1) experimental; urgency=medium
+
+  * New upstream release candidate
+
+  [ Ben Hutchings ]
+  * Adjust for migration to git:
+    - Update .gitignore files
+    - debian/control: Update Vcs-* fields
+    - debian/rules: Exclude .git from maintainerclean rule
+  * Add packages of liblockdep (lockdep, liblockdep<version>, liblockdep-dev)
+
+ -- Ben Hutchings <ben@decadent.org.uk>  Fri, 14 Aug 2015 14:58:57 +0200
 
 linux-tools (4.1.4-2) unstable; urgency=medium
 
