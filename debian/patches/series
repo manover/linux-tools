@@ -4,3 +4,17 @@ tools-perf-install.patch
 usbip-document-tcp-wrappers.patch
 kbuild-fix-recordmcount-dependency.patch
 perf-tools-fix-arm64-build-error.patch
+0001-Tools-hv-fix-file-overwriting-of-hv_fcopy_daemon.patch
+0002-Tools-hv-vssdaemon-ignore-the-EBUSY-on-multiple-free.patch
+0003-tools-hv-introduce-n-no-daemon-option.patch
+0004-Tools-hv-vssdaemon-report-freeze-errors.patch
+0005-Tools-hv-vssdaemon-skip-all-filesystems-mounted-read.patch
+0006-tools-hv-ignore-ENOBUFS-and-ENOMEM-in-the-KVP-daemon.patch
+0007-tools-hv-Makefile-Add-hv_fcopy_daemon-to-Makefile.patch
+0008-tools-hv-kvp_daemon-make-IPv6-only-injection-work.patch
+0009-Tools-hv-remove-unused-bytes_written-from-kvp_update.patch
+0010-Tools-hv-address-compiler-warnings-for-hv_kvp_daemon.patch
+0011-Tools-hv-address-compiler-warnings-for-hv_fcopy_daem.patch
+0012-Tools-hv-do-not-add-redundant-in-hv_start_fcopy.patch
+0013-tools-hv-fcopy_daemon-support-2GB-files-for-x86_32-g.patch
+0014-hv-hypervvssd-call-endmntent-before-call-setmntent-a.patch

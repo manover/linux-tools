@@ -1,0 +1,30 @@
+From: Matej Muzila <mmuzila@gmail.com>
+Date: Sun, 28 Dec 2014 15:54:13 +0100
+Subject: [07/14] tools: hv: Makefile: Add hv_fcopy_daemon to Makefile
+Origin: https://git.kernel.org/linus/ca04455fba937eb2d85f437900cd1726166192e6
+
+hv_fcopy_daemon is not mentioned in Makefile so it must be built
+manually. Add hv_fcopy_daemon to Makefile.
+
+Signed-off-by: Matej Muzila <mmuzila@redhat.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ tools/hv/Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/tools/hv/Makefile b/tools/hv/Makefile
+index bd22f78..99ffe61 100644
+--- a/tools/hv/Makefile
++++ b/tools/hv/Makefile
+@@ -5,9 +5,9 @@ PTHREAD_LIBS = -lpthread
+ WARNINGS = -Wall -Wextra
+ CFLAGS = $(WARNINGS) -g $(PTHREAD_LIBS)
+ 
+-all: hv_kvp_daemon hv_vss_daemon
++all: hv_kvp_daemon hv_vss_daemon hv_fcopy_daemon
+ %: %.c
+ 	$(CC) $(CFLAGS) -o $@ $^
+ 
+ clean:
+-	$(RM) hv_kvp_daemon hv_vss_daemon
++	$(RM) hv_kvp_daemon hv_vss_daemon hv_fcopy_daemon

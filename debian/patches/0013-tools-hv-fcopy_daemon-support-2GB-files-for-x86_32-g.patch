@@ -1,0 +1,33 @@
+From: Dexuan Cui <decui@microsoft.com>
+Date: Wed, 18 Mar 2015 12:29:26 -0700
+Subject: [13/14] tools: hv: fcopy_daemon: support >2GB files for x86_32 guest
+Origin: https://git.kernel.org/linus/b4affbbb7217e440f80c922b2b304795758d40bb
+
+Without this patch, hv_fcopy_daemon's hv_copy_data() -> pwrite()
+will fail for >2GB file offset.
+
+The current char-next branch is broken and this patch fixes
+the bug.
+
+Signed-off-by: Alex Ng <alexng@microsoft.com>
+Signed-off-by: Dexuan Cui <decui@microsoft.com>
+Cc: K. Y. Srinivasan <kys@microsoft.com>
+Signed-off-by: K. Y. Srinivasan <kys@microsoft.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ tools/hv/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/hv/Makefile b/tools/hv/Makefile
+index 99ffe61..a8ab795 100644
+--- a/tools/hv/Makefile
++++ b/tools/hv/Makefile
+@@ -3,7 +3,7 @@
+ CC = $(CROSS_COMPILE)gcc
+ PTHREAD_LIBS = -lpthread
+ WARNINGS = -Wall -Wextra
+-CFLAGS = $(WARNINGS) -g $(PTHREAD_LIBS)
++CFLAGS = $(WARNINGS) -g $(PTHREAD_LIBS) $(shell getconf LFS_CFLAGS)
+ 
+ all: hv_kvp_daemon hv_vss_daemon hv_fcopy_daemon
+ %: %.c
