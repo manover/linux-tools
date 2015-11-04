@@ -1,5 +1,18 @@
-linux-tools (3.16-4) UNRELEASED; urgency=medium
+linux-tools (3.16.7-ckt18-1) UNRELEASED; urgency=medium
 
+  * New upstream stable update
+    - perf session: Do not fail on processing out of order event
+    - tools lib traceevent kbuffer: Remove extra update to data pointer in
+      PADDING
+    - kconfig: Fix warning "‘jump’ may be used uninitialized"
+    - scripts/sortextable: suppress warning: `relocs_size' may be used
+      uninitialized
+    - perf symbols: Store if there is a filter in place
+    - perf hists browser: Take the --comm, --dsos, etc filters into account
+    - perf hists: Update the column width for the "srcline" sort key
+    - perf stat: Get correct cpu id for print_aggr
+
+  [ Ben Hutchings ]
   * [x86] Add hyperv-daemons package, thanks to Hideki Yamane (closes: #782761)
     - Apply upstream bug fixes up to Linux 4.1 inclusive
   * Adjust for migration to git:
