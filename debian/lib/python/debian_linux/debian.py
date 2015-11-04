@@ -111,8 +111,9 @@ class VersionLinux(Version):
     \d+\.\d+
 )
 (?P<update>
-    \.\d+
-)?
+    (?:\.\d+)?
+    (?:-[a-z]+\d+)?
+)
 (?:
     ~
     (?P<modifier>
@@ -130,13 +131,20 @@ class VersionLinux(Version):
 (\.\d+)?
 (?:
     (?P<revision_experimental>
-        ~experimental\.\d+
+        ~exp\d+
     )
+    |
+    (?P<revision_security>
+        [~+]deb\d+u\d+
+    )?
+    (?P<revision_backports>
+        ~bpo\d+\+\d+
+    )?
     |
     (?P<revision_other>
         [^-]+
     )
-)?
+)
 $
 """
     _version_linux_re = re.compile(_version_linux_rules, re.X)
@@ -154,9 +162,11 @@ $
             self.linux_upstream = u'-'.join((d['version'], d['modifier']))
         else:
             self.linux_upstream = d['version']
-        self.linux_upstream_full = self.linux_upstream + (d['update'] or u'')
+        self.linux_upstream_full = self.linux_upstream + d['update']
         self.linux_dfsg = d['dfsg']
         self.linux_revision_experimental = match.group('revision_experimental') and True
+        self.linux_revision_security = match.group('revision_security') and True
+        self.linux_revision_backports = match.group('revision_backports') and True
         self.linux_revision_other = match.group('revision_other') and True
 
 
