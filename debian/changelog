@@ -1,4 +1,4 @@
-linux-tools (3.16.7-ckt18-1) UNRELEASED; urgency=medium
+linux-tools (3.16.7-ckt20-1) UNRELEASED; urgency=medium
 
   * New upstream stable update
     - perf session: Do not fail on processing out of order event
@@ -11,6 +11,10 @@ linux-tools (3.16.7-ckt18-1) UNRELEASED; urgency=medium
     - perf hists browser: Take the --comm, --dsos, etc filters into account
     - perf hists: Update the column width for the "srcline" sort key
     - perf stat: Get correct cpu id for print_aggr
+    - perf header: Fixup reading of HEADER_NRCPUS feature
+    - tools lib traceevent: Fix string handling in heterogeneous arch
+      environments
+    - perf tools: Fix copying of /proc/kcore
 
   [ Ben Hutchings ]
   * [x86] Add hyperv-daemons package, thanks to Hideki Yamane (closes: #782761)
