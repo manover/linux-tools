@@ -1,3 +1,9 @@
+linux-tools (4.3.1-2~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Héctor Orón Martínez <zumbi@debian.org>  Thu, 07 Jan 2016 15:53:33 +0100
+
 linux-tools (4.3.1-2) unstable; urgency=medium
 
   * Upload for Perl 5.22 transition (Closes: #808329)
