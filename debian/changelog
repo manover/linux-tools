@@ -1,8 +1,9 @@
-linux-tools (4.3.1-1~bpo8+1) jessie-backports; urgency=medium
+linux-tools (4.3.1-2) unstable; urgency=medium
 
-  * Rebuild for jessie-backports.
+  * Upload for Perl 5.22 transition (Closes: #808329)
+  * debian/rules: Fix check for binNMU, broken since 4.1.4-1
 
- -- Héctor Orón Martínez <zumbi@debian.org>  Mon, 28 Dec 2015 13:06:53 +0100
+ -- Ben Hutchings <ben@decadent.org.uk>  Sat, 19 Dec 2015 03:47:10 +0000
 
 linux-tools (4.3.1-1) unstable; urgency=medium
 
