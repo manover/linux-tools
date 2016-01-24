@@ -7,7 +7,7 @@ Description: Kbuild infrastructure for Linux @version@
 
 Package: linux-tools-@version@
 Section: devel
-Architecture: alpha amd64 armel armhf hppa i386 powerpc ppc64 ppc64el s390 s390x sh4 sparc sparc64
+Architecture: alpha amd64 arm64 armel armhf hppa i386 powerpc ppc64 ppc64el s390 s390x sh4 sparc sparc64
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${perl:Depends}, ${python:Depends}
 Recommends: linux-base (>= 3.4~)
 Suggests: linux-doc-@version@
@@ -49,3 +49,21 @@ Description: USB device sharing system over IP network
  .
  This package provides the server component 'usbipd' and the
  client tool 'usbip'.
+
+Package: hyperv-daemons
+Architecture: i386 amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Section: admin
+Description: Support daemons for Linux running on Hyper-V
+ Suite of daemons for Linux guests running on Hyper-V, consisting of
+ hv_fcopy_daemon, hv_kvp_daemon and hv_vss_daemon.
+ .
+ hv_fcopy_daemon provides the file copy service, allowing the host to
+ copy files into the guest.
+ .
+ hv_kvp_daemon provides the key-value pair (KVP) service, allowing the
+ host to get and set the IP networking configuration of the guest.
+ (This requires helper scripts which are not currently included.)
+ .
+ hv_vss_daemon provides the volume shadow copy service (VSS), allowing
+ the host to freeze the guest filesystems while taking a snapshot.
