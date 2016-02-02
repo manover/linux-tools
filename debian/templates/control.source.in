@@ -7,7 +7,6 @@ Standards-Version: 3.9.4
 Build-Depends:
  debhelper (>> 7), python,
  asciidoc, bison, flex, libaudit-dev, libdw-dev, libelf-dev, libiberty-dev | binutils-dev (<< 2.23.91.20131123-1), libnewt-dev, libnuma-dev [amd64 arm64 i386 powerpc ppc64 ppc64el], libperl-dev, libunwind7-dev [amd64 i386], python-dev, xmlto,
- autoconf, automake, libtool, libglib2.0-dev, libudev-dev, libwrap0-dev,
- dh-systemd
+ autoconf, automake, libtool, libglib2.0-dev, libudev-dev, libwrap0-dev
 Vcs-Git: https://anonscm.debian.org/git/kernel/linux-tools.git
 Vcs-Browser: https://anonscm.debian.org/cgit/kernel/linux-tools.git
