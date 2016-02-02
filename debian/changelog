@@ -5,6 +5,7 @@ linux-tools (3.16.7-ckt20-1~bpo70+1) UNRELEASED; urgency=low
     - perf: Work-around Perl bool definition conflict
     - hyperv-daemons: Add symlinks to ensure new kernel headers are used
     - hyperv-daemons: Remove use of dh-systemd
+    - hyperv-daemons: Add init scripts
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 24 Jan 2016 16:01:28 +0000
 
