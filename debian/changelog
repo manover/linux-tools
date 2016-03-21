@@ -1,3 +1,9 @@
+linux-tools (4.5.0-2) unstable; urgency=medium
+
+  * Rebase on lastest Debian version
+
+ -- Denis Bychkov <manover@gmail.com>  Mon, 21 Mar 2016 17:39:23 -0400
+
 linux-tools (4.5.0-1) unstable; urgency=medium
 
   * Linux 4.5
